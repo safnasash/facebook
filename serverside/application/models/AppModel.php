@@ -1,8 +1,11 @@
 <?php
 class AppModel extends CI_Model{
     public function createuser($user){
-    $this->db->insert($user);
-    //insert('vchr_fname'=>'safna',)
+        foreach(array_keys($user) as $i)
+        $user[$i]=$this->db->escape($user[$i]);
+        $values=implode(',',$user);
+    $this->db->query("call regstrtion({$values})");
+    
     }
 }
 ?>
